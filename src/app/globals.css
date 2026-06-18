@@ -1,0 +1,1298 @@
+/* globals.css - Dira app styles. Imported last, after the house design system
+ * (tokens, base, components). Everything here is app-specific layout and the
+ * few widgets the house kit does not cover (table, chips, badges, dialog grid).
+ * RTL is set on <html dir="rtl">; styles use logical properties throughout. */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.muted {
+  color: var(--text-soft);
+}
+.pad {
+  padding-block: var(--space-6);
+  text-align: center;
+}
+
+/* --- top app bar --- */
+.app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in oklch, var(--surface) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-block-end: 1px solid var(--border);
+}
+.app-bar-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.brand-mark {
+  font-size: var(--step-2);
+  line-height: 1;
+}
+.brand h1 {
+  font-size: var(--step-2);
+  margin: 0;
+}
+.brand-sub {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-soft);
+}
+.top-nav {
+  display: flex;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+.nav-link.active {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+.nav-link.disabled {
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+.soon {
+  font-size: 0.7em;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  color: var(--text-soft);
+}
+
+/* --- Buy/Rent track switch (segmented control); skinned below --- */
+.track-switch {
+  display: inline-flex;
+  align-items: stretch;
+}
+.seg {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-weight: 700;
+  font-size: var(--step--1);
+  color: var(--text);
+}
+.seg.active {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+.seg-icon {
+  display: inline-flex;
+  align-items: center;
+}
+/* normalise the differently-proportioned house/key sprites to one cap height */
+.seg-icon .sprite {
+  height: 1.1em;
+  width: auto;
+}
+
+main {
+  padding-block: var(--space-6) var(--space-8);
+}
+
+/* --- summary stats --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-3);
+  margin: 0 0 var(--space-5);
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+}
+.stat dt {
+  font-size: var(--step--1);
+  color: var(--text-soft);
+}
+.stat dd {
+  margin: 0;
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+/* --- toolbar --- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin-block-end: var(--space-5);
+}
+.search {
+  flex: 1 1 16rem;
+}
+.search input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: var(--step--1);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+}
+.chip:hover {
+  background: var(--surface-2);
+}
+.chip.on {
+  background: var(--primary);
+  color: var(--primary-text);
+  border-color: transparent;
+}
+.chip-count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+  font-size: 0.85em;
+}
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}
+.toolbar-actions .btn {
+  padding: var(--space-2) var(--space-4);
+}
+
+/* --- table --- */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.table-wrap:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+table.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+table.grid th,
+table.grid td {
+  padding: var(--space-3) var(--space-3);
+  text-align: start;
+  white-space: nowrap;
+  border-block-end: 1px solid var(--border);
+  vertical-align: middle;
+}
+table.grid thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  z-index: 1;
+  font-size: var(--step--1);
+}
+.th-sort button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  cursor: pointer;
+}
+.sort-mark {
+  font-size: 0.7em;
+  color: var(--primary);
+  min-width: 0.8em;
+}
+table.grid tbody tr:hover {
+  background: var(--surface-2);
+}
+.cell-name {
+  font-weight: 600;
+  position: sticky;
+  inset-inline-start: 0;
+  background: var(--surface);
+  border-inline-end: 1px solid var(--border);
+}
+table.grid tbody tr:hover .cell-name {
+  background: var(--surface-2);
+}
+.cell-name small {
+  display: block;
+  font-weight: 400;
+  color: var(--text-soft);
+  font-size: 0.85em;
+  white-space: normal;
+  max-width: 16rem;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bidi isolation for values that mix digits with neutral/Latin symbols
+ * (₪, M, ×, %, ...). `plaintext` resolves each value's direction from its own
+ * content (like <bdi>), so the symbols stay glued to the number and never
+ * reorder against the RTL flow. */
+.num,
+.stat dd,
+.feature,
+.fin-row dd,
+.chip-count {
+  unicode-bidi: plaintext;
+}
+.col-actions {
+  text-align: end;
+}
+.row-actions {
+  display: inline-flex;
+  gap: var(--space-1);
+  justify-content: flex-end;
+}
+.icon-btn {
+  padding: var(--space-2);
+  min-width: 2.25rem;
+  line-height: 1;
+}
+.icon-btn.danger:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* --- status badge --- */
+.badge {
+  display: inline-block;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--step--1);
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.badge[data-status="to-see"] {
+  background: oklch(0.92 0.05 250);
+  color: oklch(0.35 0.12 250);
+}
+.badge[data-status="seen"] {
+  background: oklch(0.93 0.04 var(--hue));
+  color: oklch(0.38 0.06 var(--hue));
+}
+.badge[data-status="shortlist"] {
+  background: oklch(0.92 0.08 75);
+  color: oklch(0.42 0.12 75);
+}
+.badge[data-status="offer"] {
+  background: oklch(0.9 0.09 150);
+  color: oklch(0.38 0.13 150);
+}
+.badge[data-status="rejected"] {
+  background: oklch(0.92 0.06 27);
+  color: oklch(0.45 0.15 27);
+}
+.badge[data-status="signed"] {
+  background: oklch(0.9 0.09 150);
+  color: oklch(0.34 0.13 150);
+}
+html.dark .badge {
+  filter: brightness(0.9) saturate(1.1);
+}
+
+/* --- stars --- */
+.stars {
+  display: inline-flex;
+  white-space: nowrap;
+}
+.star {
+  background: none;
+  border: 0;
+  padding: 0 1px;
+  font: inherit;
+  font-size: 1.05em;
+  line-height: 1;
+  color: var(--text-faint);
+  cursor: default;
+}
+button.star {
+  cursor: pointer;
+}
+.star.on {
+  color: var(--accent);
+}
+
+/* --- dialog --- */
+.dialog {
+  width: min(56rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-2);
+}
+.dialog::backdrop {
+  background: oklch(0.2 0.02 var(--hue) / 0.45);
+  backdrop-filter: blur(2px);
+}
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2rem);
+}
+.dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-block-end: 1px solid var(--border);
+}
+.dialog-head h2 {
+  font-size: var(--step-1);
+  margin: 0;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+.span-2 {
+  grid-column: 1 / -1;
+}
+.field-label {
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+.dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-block-start: 1px solid var(--border);
+}
+
+/* --- empty state + footer note --- */
+.empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-7);
+}
+.empty h2 {
+  font-size: var(--step-2);
+}
+.empty p {
+  max-width: 36ch;
+}
+.privacy-note {
+  margin-block-start: var(--space-5);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+/* --- responsive --- */
+@media (max-width: 640px) {
+  .app-bar-inner {
+    flex-wrap: wrap;
+  }
+  .top-nav {
+    order: 3;
+    width: 100%;
+    margin-inline-start: 0;
+  }
+  .toolbar-actions {
+    margin-inline-start: 0;
+    width: 100%;
+  }
+  .toolbar-actions .btn {
+    flex: 1 1 auto;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .finance-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- app-bar: brand link + action cluster --- */
+a.brand {
+  color: inherit;
+  text-decoration: none;
+}
+a.brand:hover {
+  text-decoration: none;
+}
+.app-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline-start: auto;
+}
+
+/* --- feature badges under the apartment name --- */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-block-start: var(--space-1);
+}
+.feature {
+  font-size: 0.72em;
+  font-weight: 400;
+  color: var(--text-soft);
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  padding: 1px var(--space-2);
+  white-space: nowrap;
+}
+
+/* --- compare selection --- */
+.col-pick {
+  width: 2.5rem;
+  text-align: center;
+}
+.col-pick input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+table.grid tbody tr.row-selected {
+  background: color-mix(in oklch, var(--primary) 12%, var(--surface));
+}
+table.grid tbody tr.row-selected .cell-name {
+  background: color-mix(in oklch, var(--primary) 12%, var(--surface));
+}
+.compare-hint {
+  padding-block: var(--space-3);
+}
+
+/* --- compare table --- */
+.compare {
+  margin-block-end: var(--space-5);
+  padding: var(--space-4);
+}
+.compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+.compare-head h2 {
+  font-size: var(--step-1);
+  margin: 0;
+}
+.compare-grid th[scope="col"] {
+  font-size: var(--step--1);
+  min-width: 9rem;
+}
+.compare-grid th[scope="col"] small,
+.cell-name small {
+  display: block;
+  font-weight: 400;
+  color: var(--text-soft);
+  font-size: 0.85em;
+}
+.compare-grid td.best,
+table.grid td.best {
+  color: var(--ok);
+  font-weight: 700;
+  background: color-mix(in oklch, var(--ok) 12%, transparent);
+}
+.compare-grid tr.row-total td,
+.compare-grid tr.row-total th {
+  border-block-start: 2px solid var(--border);
+  font-weight: 700;
+}
+.cell-list ul {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  white-space: normal;
+  max-width: 16rem;
+}
+.cell-list li {
+  font-size: 0.9em;
+}
+
+/* --- section title in toolbars --- */
+.section-title {
+  font-size: var(--step-1);
+  margin: 0;
+}
+
+/* --- dialog checkboxes (apartment "extras") --- */
+.checks {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+.checks legend {
+  padding-inline: var(--space-2);
+}
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 400;
+  font-size: var(--step--1);
+  cursor: pointer;
+}
+.check input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--primary);
+}
+.field-hint {
+  font-size: var(--step--1);
+}
+.field-hint.warn {
+  color: oklch(0.55 0.17 25);
+  font-weight: 600;
+}
+html.dark .field-hint.warn {
+  color: oklch(0.74 0.16 25);
+}
+/* settings sub-section heading inside the form grid */
+.form-subhead {
+  margin: var(--space-3) 0 0;
+  font-size: var(--step-0);
+  border-block-start: 1px solid var(--border);
+  padding-block-start: var(--space-3);
+}
+/* over-cap deposit marker in the compare grid */
+.cell-flag {
+  color: oklch(0.55 0.17 25);
+  font-weight: 700;
+}
+html.dark .cell-flag {
+  color: oklch(0.74 0.16 25);
+}
+
+/* --- financing panel --- */
+.finance-panel {
+  margin-block-end: var(--space-6);
+}
+.finance-panel h2 {
+  font-size: var(--step-2);
+  margin-block: 0 var(--space-2);
+}
+.finance-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-4);
+  margin-block: var(--space-4);
+}
+.finance-grid {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.fin-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--border);
+}
+.fin-row:last-child {
+  border-block-end: 0;
+}
+.fin-row dt {
+  color: var(--text-soft);
+  font-size: var(--step--1);
+}
+.fin-row dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.fin-row.fin-emph {
+  background: var(--surface-2);
+}
+.fin-row.fin-emph dt {
+  color: var(--text);
+  font-weight: 700;
+}
+.fin-row.fin-emph dd {
+  font-size: var(--step-1);
+  color: var(--primary);
+}
+.finance-tip,
+.finance-panel .callout {
+  margin-block-start: var(--space-4);
+}
+.disclaimer {
+  font-size: var(--step--1);
+  margin-block-start: var(--space-3);
+  line-height: 1.45;
+}
+
+/* --- builder credit (interim brand mark, weatherv1 pill style) ---
+ * Adapted to Dira's tokens so it reads in both light and dark themes:
+ * --text is the "ink", a translucent surface is the "paper". */
+.builder-credit {
+  direction: ltr;
+  unicode-bidi: isolate;
+  position: fixed;
+  inset-inline-start: 0.875rem;
+  inset-block-end: 0.875rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: calc(100vw - 1.75rem);
+  padding: 0.22rem 0.5rem;
+  border: 1.5px solid var(--text);
+  border-radius: var(--radius-full);
+  background: color-mix(in oklch, var(--surface) 78%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--text);
+  box-shadow: 1.5px 1.5px 0 var(--text);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform var(--dur-1) var(--ease), background-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+.builder-credit:hover,
+.builder-credit:focus-visible {
+  background: var(--accent);
+  color: oklch(0.22 0.02 var(--hue));
+  border-color: oklch(0.22 0.02 var(--hue));
+  box-shadow: 2px 2px 0 oklch(0.22 0.02 var(--hue));
+  outline: 3px solid var(--bg);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+.builder-credit__label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.builder-credit__sep {
+  opacity: 0.52;
+}
+.builder-credit__name {
+  font-weight: 900;
+}
+
+@media (max-width: 480px) {
+  .builder-credit {
+    font-size: 0.62rem;
+    padding: 0.2rem 0.45rem;
+  }
+}
+
+/* =====================================================================
+ * STARDEW PIXEL OVERRIDES — wooden panels, pixel chrome, cozy game UI.
+ * Appended last so these win over the earlier (SaaS-era) rules.
+ * ===================================================================== */
+
+/* --- app bar: a wooden signboard --- */
+.app-bar {
+  background: var(--surface);
+  backdrop-filter: none;
+  border-block-end: 4px solid var(--wood);
+  box-shadow: 0 4px 0 var(--wood-deep), 0 7px 0 var(--shadow-ink);
+}
+.brand h1 {
+  font-family: var(--font-pixel);
+  font-size: var(--step-1);
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.brand-sub { font-size: var(--step--1); color: var(--text-soft); }
+.brand-mark { font-size: var(--step-2); }
+
+/* nav = pixel tabs */
+.nav-link {
+  font-family: var(--font-pixel);
+  font-size: var(--step--1);
+  border: 2px solid var(--wood-dark);
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+.nav-link:hover { background: var(--surface-2); text-decoration: none; }
+.nav-link.active {
+  background: var(--accent);
+  color: var(--wood-deep);
+  border-color: var(--wood-deep);
+  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2), 2px 2px 0 var(--shadow-ink);
+}
+
+/* track switch = a joined pair of pixel tabs */
+.track-switch {
+  border: 2px solid var(--wood-dark);
+  background: var(--surface);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+.seg {
+  font-family: var(--font-pixel);
+  font-size: calc(var(--step--1) * 0.92);
+  color: var(--text);
+  border-inline-end: 2px solid var(--wood-dark);
+}
+.seg:last-child {
+  border-inline-end: 0;
+}
+.seg:hover {
+  background: var(--surface-2);
+  text-decoration: none;
+}
+.seg.active {
+  background: var(--accent);
+  color: var(--wood-deep);
+  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2);
+}
+
+/* app-bar icon buttons stay little wooden keys (inherit .btn-ghost) */
+.app-bar-actions .icon-btn { border-width: 2px; }
+
+/* --- stat "signpost" cards --- */
+.stats { gap: var(--space-4); }
+.stat {
+  background: var(--surface);
+  border: 3px solid var(--wood);
+  border-radius: 0;
+  box-shadow: 0 0 0 2px var(--wood-deep), 3px 3px 0 var(--shadow-ink);
+  padding: var(--space-3) var(--space-4);
+}
+.stat dt { color: var(--text-soft); font-weight: 700; }
+.stat dd { font-family: var(--font-pixel); font-size: var(--step-0); color: var(--text); }
+/* rotate through crop colours on the stat accents */
+.stat:nth-child(1) { border-color: var(--green); }
+.stat:nth-child(2) { border-color: var(--blue); }
+.stat:nth-child(3) { border-color: var(--red); }
+.stat:nth-child(4) { border-color: var(--purple); }
+.stat:nth-child(5) { border-color: var(--accent); }
+
+/* --- toolbar search: a carved field --- */
+.search input {
+  border: 2px solid var(--wood-dark);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: inset 2px 2px 0 oklch(0 0 0 / 0.08);
+}
+
+/* --- filter chips = pixel tabs --- */
+.chip {
+  font-family: var(--font-pixel);
+  font-size: calc(var(--step--1) * 0.92);
+  border: 2px solid var(--wood-dark);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  transition: transform var(--dur-1) var(--ease-smooth), background var(--dur-1) var(--ease-smooth);
+}
+.chip:hover { background: var(--surface-2); }
+.chip.on {
+  background: var(--accent);
+  color: var(--wood-deep);
+  border-color: var(--wood-deep);
+  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2), 2px 2px 0 var(--shadow-ink);
+}
+.chip-count { font-family: var(--font-pixel); }
+
+/* --- table = parchment ledger in a wooden frame --- */
+.table-wrap {
+  border: 3px solid var(--wood);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: 0 0 0 2px var(--wood-deep), 5px 5px 0 var(--shadow-ink);
+}
+table.grid th,
+table.grid td { border-block-end: 2px solid var(--wood-dark); }
+table.grid thead th {
+  background: var(--wood);
+  color: var(--primary-text);
+  font-family: var(--font-pixel);
+  font-size: calc(var(--step--1) * 0.9);
+  border-block-end: 2px solid var(--wood-deep);
+}
+.th-sort button { color: var(--primary-text); }
+.sort-mark { color: var(--accent); }
+table.grid tbody tr:hover { background: var(--surface-2); }
+.cell-name { background: var(--surface); border-inline-end: 2px solid var(--wood-dark); }
+table.grid tbody tr:hover .cell-name { background: var(--surface-2); }
+.col-pick input, .check input, .checks input { accent-color: var(--green); }
+table.grid td.best,
+.compare-grid td.best {
+  color: var(--wood-deep);
+  background: var(--accent);
+  font-weight: 800;
+}
+table.grid tbody tr.row-selected,
+table.grid tbody tr.row-selected .cell-name {
+  background: color-mix(in oklch, var(--accent) 35%, var(--surface));
+}
+
+/* --- status badges = pixel tags --- */
+.badge {
+  font-family: var(--font-pixel);
+  font-size: calc(var(--step--1) * 0.82);
+  border: 2px solid var(--wood-deep);
+  border-radius: 0;
+  box-shadow: 1px 1px 0 var(--shadow-ink);
+}
+.badge[data-status="to-see"]   { background: var(--blue);    color: var(--wood-deep); }
+.badge[data-status="seen"]     { background: var(--surface-2); color: var(--text); }
+.badge[data-status="shortlist"]{ background: var(--accent);  color: var(--wood-deep); }
+.badge[data-status="offer"]    { background: var(--green);   color: var(--wood-deep); }
+.badge[data-status="rejected"] { background: var(--red);     color: oklch(0.98 0.02 90); }
+.badge[data-status="signed"]   { background: var(--green);   color: var(--wood-deep); }
+html.dark .badge { filter: none; }
+
+/* --- stars = gold --- */
+.star.on { color: var(--accent); }
+.star { color: var(--text-faint); }
+
+/* --- dialog = wooden menu box --- */
+.dialog {
+  /* restore native centering — the global `* { margin: 0 }` reset kills the
+     UA `margin: auto` that centers a showModal() dialog */
+  margin: auto;
+  border: 4px solid var(--wood);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: 0 0 0 2px var(--wood-deep), inset 0 0 0 2px var(--wood-deep), 8px 8px 0 var(--shadow-ink);
+}
+.dialog::backdrop { background: var(--wood-deep); opacity: 0.55; backdrop-filter: blur(1px); }
+.dialog-head { background: var(--wood); color: var(--primary-text); border-block-end: 2px solid var(--wood-deep); }
+.dialog-head h2 { font-family: var(--font-pixel); font-size: var(--step-0); color: var(--primary-text); }
+/* close button: parchment key with a dark glyph — visible on the brown header */
+.dialog-head .icon-btn {
+  background: var(--surface);
+  color: var(--wood-deep);
+  border-color: var(--wood-deep);
+}
+.dialog-head .icon-btn:hover { background: var(--accent); }
+.dialog-foot { border-block-start: 2px solid var(--wood-dark); background: var(--surface-2); }
+.checks { border: 2px solid var(--wood-dark); border-radius: 0; }
+
+/* --- section titles + headings get the pixel face --- */
+.section-title,
+.compare-head h2 { font-family: var(--font-pixel); font-size: var(--step-0); }
+.fin-row.fin-emph dd { font-family: var(--font-pixel); color: var(--accent); }
+.fin-emph dt { color: var(--text); }
+
+/* --- finance grid in a wood frame --- */
+.finance-grid { border: 2px solid var(--wood-dark); border-radius: 0; }
+.fin-row { border-block-end: 2px solid var(--wood-dark); }
+.fin-row.fin-emph { background: var(--surface-2); }
+
+/* --- builder credit: a little wooden name-plate --- */
+.builder-credit {
+  border: 2px solid var(--wood-deep);
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  backdrop-filter: none;
+}
+.builder-credit:hover,
+.builder-credit:focus-visible {
+  background: var(--accent);
+  color: var(--wood-deep);
+  border-color: var(--wood-deep);
+  box-shadow: 3px 3px 0 var(--shadow-ink);
+  outline: 2px solid var(--wood-deep);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+
+/* --- pixel sprite helper --- */
+.sprite { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.bob { animation: bob 2.4s steps(6, end) infinite; }
+@media (prefers-reduced-motion: reduce) { .bob { animation: none; } }
+
+/* --- tutorial wizard: a centered onboarding modal overlay --- */
+.dialog.tutorial {
+  width: min(38rem, calc(100vw - 1.5rem));
+  position: relative;
+  text-align: center;
+}
+.tut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5) var(--space-5);
+}
+.tut-art { padding-block-start: var(--space-2); }
+.tut-step {
+  font-family: var(--font-pixel);
+  font-size: calc(var(--step--1) * 0.8);
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+.tut-title {
+  font-family: var(--font-pixel);
+  font-size: var(--step-0);
+  margin: 0;
+  color: var(--text);
+}
+.tut-body {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 36ch;
+}
+.tut-dots {
+  display: flex;
+  gap: var(--space-2);
+  margin-block: var(--space-1);
+}
+.tut-dot {
+  width: 0.7rem; height: 0.7rem;
+  background: var(--surface-2);
+  border: 2px solid var(--wood-dark);
+}
+.tut-dot.on { background: var(--accent); border-color: var(--wood-deep); }
+.tut-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  margin-block-start: var(--space-2);
+}
+.tut-nav .btn { min-width: 6rem; }
+.tut-skip {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  z-index: 1;
+  background: var(--surface-2);
+  border: 2px solid var(--wood-deep);
+  color: var(--text-soft);
+  font-size: var(--step--1);
+  padding: 2px var(--space-3);
+  cursor: pointer;
+  box-shadow: 1px 1px 0 var(--shadow-ink);
+}
+.tut-skip:hover { background: var(--accent); color: var(--wood-deep); }
+
+/* --- empty state with a sprite --- */
+.empty .empty-art { margin-block-end: var(--space-2); }
+.empty h2 { font-family: var(--font-pixel); font-size: var(--step-1); line-height: 1.5; }
+
+/* --- permanent dedication line (so it's always written, not just in the modal) --- */
+.dedication {
+  margin-block: var(--space-2) var(--space-6);
+  text-align: center;
+  font-size: var(--step--1);
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* =====================================================================
+ * MOBILE-FIRST refinements — this is a phone-during-viewings app, so the
+ * Stardew chrome has to sit comfortably on a ~375px screen.
+ * ===================================================================== */
+@media (max-width: 640px) {
+  .container { padding-inline: var(--space-3); }
+
+  /* app bar stacks: brand row, then nav, then actions */
+  .app-bar-inner { gap: var(--space-2); padding-block: var(--space-2); }
+  .brand h1 { font-size: var(--step-0); }
+  .brand-sub { font-size: calc(var(--step--1) * 0.9); }
+  .app-bar-actions { gap: var(--space-1); }
+  .top-nav { gap: var(--space-2); }
+  .nav-link { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); }
+  .seg { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); gap: var(--space-1); }
+
+  /* stats: full-width cards so the wide pixel numbers never overflow */
+  .stats { grid-template-columns: 1fr; gap: var(--space-3); }
+  .stat { padding: var(--space-2) var(--space-3); min-width: 0; }
+  .stat dd { font-size: calc(var(--step--1) * 0.95); overflow-wrap: anywhere; }
+
+  /* tutorial modal: comfortable padding + readable body on phones */
+  .tut { padding: var(--space-6) var(--space-4) var(--space-4); }
+  .tut-body { font-size: var(--step--1); }
+  .tut-nav .btn { min-width: 5rem; }
+
+  /* chunky, thumb-friendly tap targets */
+  .chip { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); }
+  .icon-btn { min-width: 2.5rem; min-height: 2.5rem; }
+  .empty h2 { font-size: var(--step-0); }
+  .empty p { font-size: var(--step--1); }
+
+  /* dialogs go (near) full-screen on phones */
+  .dialog { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
+}
+
+
+/* =====================================================================
+ * 8-BIT SCENE — fixed Stardew-style backdrop (sky + clouds + field).
+ * Lives behind everything; content panels are opaque and float over it.
+ * ===================================================================== */
+.pixel-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  /* stepped sky — hard colour bands read as 8-bit, not a smooth gradient */
+  background: linear-gradient(
+    180deg,
+    var(--sky-1) 0%,
+    var(--sky-1) 34%,
+    var(--sky-2) 34%,
+    var(--sky-2) 64%,
+    var(--sky-3) 64%,
+    var(--sky-3) 100%
+  );
+}
+
+/* the tiling grass + soil + crops field, anchored to the bottom */
+.pixel-ground {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  width: 100%;
+  height: 144px;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* drifting pixel clouds */
+.pixel-clouds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  image-rendering: pixelated;
+  opacity: 0.9;
+  will-change: transform;
+}
+.cloud-a {
+  top: 9%;
+  width: 96px;
+  animation: drift-a 70s linear infinite;
+}
+.cloud-b {
+  top: 20%;
+  width: 64px;
+  opacity: 0.75;
+  animation: drift-b 96s linear infinite;
+}
+.cloud-c {
+  top: 32%;
+  width: 120px;
+  opacity: 0.82;
+  animation: drift-c 120s linear infinite;
+}
+@keyframes drift-a {
+  from { transform: translateX(-140px); }
+  to   { transform: translateX(calc(100vw + 140px)); }
+}
+@keyframes drift-b {
+  from { transform: translateX(calc(100vw + 120px)); }
+  to   { transform: translateX(-120px); }
+}
+@keyframes drift-c {
+  from { transform: translateX(-180px); }
+  to   { transform: translateX(calc(100vw + 180px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cloud { animation: none; }
+  .cloud-a { left: 6%; }
+  .cloud-b { left: 64%; }
+  .cloud-c { left: 30%; }
+}
+
+/* --- celestial: sun by day, moon by night --- */
+.scene-sun,
+.scene-moon {
+  position: absolute;
+  top: 6%;
+  inset-inline-end: 9%;
+  image-rendering: pixelated;
+}
+.scene-sun {
+  filter: drop-shadow(0 0 10px color-mix(in oklch, var(--sun) 70%, transparent));
+  animation: sun-pulse 6s ease-in-out infinite;
+}
+.scene-moon {
+  display: none;
+  filter: drop-shadow(0 0 10px color-mix(in oklch, var(--moon) 60%, transparent));
+  animation: moon-bob 9s ease-in-out infinite;
+}
+@keyframes sun-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes moon-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+/* --- stars + a stray shooting star (night) --- */
+.scene-stars {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+.twinkle {
+  position: absolute;
+  image-rendering: pixelated;
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.shooting-star {
+  position: absolute;
+  top: 9%;
+  inset-inline-end: 20%;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--star));
+  opacity: 0;
+  transform: rotate(35deg);
+  animation: shoot 13s ease-in infinite;
+}
+@keyframes shoot {
+  0%, 90% { opacity: 0; transform: translate(0, 0) rotate(35deg); }
+  91% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(-170px, 120px) rotate(35deg); }
+}
+
+/* --- birds crossing the sky (day) --- */
+.scene-birds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.bird-fly {
+  position: absolute;
+  left: 0;
+  image-rendering: pixelated;
+  opacity: 0.85;
+  animation-name: bird-fly;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+@keyframes bird-fly {
+  from { transform: translateX(-8vw) translateY(0); }
+  50%  { transform: translateX(50vw) translateY(-16px); }
+  to   { transform: translateX(108vw) translateY(0); }
+}
+
+/* --- trees + flowers standing on the grass, in front of the field --- */
+.scene-scape {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 104px;
+  height: 0;
+}
+.scape-item {
+  position: absolute;
+  bottom: 0;
+  image-rendering: pixelated;
+  transform-origin: bottom center;
+}
+.scape-flower { bottom: -10px; }
+.sway {
+  animation-name: sway;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+
+/* night swaps the sky: hide sun + birds, reveal moon + stars */
+html.dark .scene-sun,
+html.dark .scene-birds { display: none; }
+html.dark .scene-moon,
+html.dark .scene-stars { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-sun,
+  .scene-moon,
+  .twinkle,
+  .shooting-star,
+  .sway { animation: none; }
+  .scene-birds { display: none; }
+}
+
+/* keep the two non-panel footer lines readable over the field */
+.privacy-note,
+.dedication {
+  width: fit-content;
+  max-width: min(100%, 60ch);
+  margin-inline: auto;
+  padding: var(--space-2) var(--space-4);
+  background: color-mix(in oklch, var(--surface) 86%, transparent);
+  border: 2px solid var(--wood-dark);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
