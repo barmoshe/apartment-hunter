@@ -3,18 +3,17 @@
 דמו ציבורי לניהול חיפוש דירה: ריכוז כל הדירות שראיתם, השוואה ביניהן, וחישוב
 העלות הכוללת והמימון — הכול נשמר מקומית במכשיר שלכם, בלי חשבון ובלי שרת.
 
-A mobile-first, Hebrew/RTL web app for managing a real-estate search, dressed as
-a cozy **Stardew-Valley pixel game**. Track every apartment you have seen,
-compare a shortlist side by side, and work out the all-in cost (Israeli purchase
-tax + closing costs) and the mortgage picture. This is a public demo: it ships
-with no data — everything you add stays in your own browser.
+A mobile-first, Hebrew/RTL web app for managing a real-estate search, with a
+clean, neutral product UI. Track every apartment you have seen, compare a
+shortlist side by side, and work out the all-in cost (Israeli purchase tax +
+closing costs) and the mortgage picture. This is a public demo: it ships with no
+data; everything you add stays in your own browser.
 
 ## עיצוב
 
-מראה **פיקסל בסגנון Stardew Valley**: לוחות עץ, כפתורי פיקסל, צללים קשיחים,
-ספרייטים מצוירים ביד (בית, רוח־עמק, מטבע), פלטת קלף + עץ, ומצב בהיר/כהה. גופן
-הפיקסל (Public Pixel, CC0) מוגבל ל־לטינית/ספרות/₪ כדי שכל העברית תישאר קריאה
-ב־Rubik. ללא אימוג'י — אייקונים הם ספרייטים או סמלי קו.
+מראה נקי ומקצועי: משטחים לבנים על רקע אפור בהיר, צבע מותג כחול רגוע, פינות
+מעוגלות וצללים רכים, ומצב בהיר/כהה. גופן Rubik לכל הממשק (עברית ולטינית),
+אייקוני קו פשוטים, וניגודיות AA. ללא אימוג'י.
 
 ## יכולות
 

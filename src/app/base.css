@@ -15,8 +15,6 @@ html {
 }
 
 body {
-  /* Transparent so the fixed 8-bit scene (<PixelBackground />) shows through;
-     --bg is a fallback for the brief moment before it paints. */
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -25,28 +23,19 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-body:has(.pixel-bg) {
-  background: transparent;
-}
 
-/* Headings: pixel display face, steppy and chunky. */
+/* Headings: clean sans, semibold. */
 h1, h2, h3, h4 {
   line-height: var(--leading-tight);
   text-wrap: balance;
-  font-family: var(--font-pixel);
-  /* 400 for Latin pixel glyphs; Hebrew falls back to Rubik, where a heavy
-     weight keeps headings chunky and on-theme. */
-  font-weight: 800;
-  letter-spacing: 0.01em;
+  font-family: var(--font-sans);
+  font-weight: 700;
 }
 h1 { font-size: var(--step-3); }
 h2 { font-size: var(--step-1); }
 h3 { font-size: var(--step-1); }
 h4 { font-size: var(--step-0); }
 p, li { max-width: var(--measure); text-wrap: pretty; }
-
-/* Crisp scaling for pixel-art sprites and any pixel imagery. */
-.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
 
 a { color: var(--primary); text-underline-offset: 0.15em; }
 a:hover { color: var(--primary-hover); }

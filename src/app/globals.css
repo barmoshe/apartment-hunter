@@ -749,232 +749,35 @@ html.dark .cell-flag {
   }
 }
 
+
 /* =====================================================================
- * STARDEW PIXEL OVERRIDES — wooden panels, pixel chrome, cozy game UI.
- * Appended last so these win over the earlier (SaaS-era) rules.
+ * App-specific polish (clean, neutral). Appended after the base rules.
  * ===================================================================== */
 
-/* --- app bar: a wooden signboard --- */
-.app-bar {
-  background: var(--surface);
-  backdrop-filter: none;
-  border-block-end: 4px solid var(--wood);
-  box-shadow: 0 4px 0 var(--wood-deep), 0 7px 0 var(--shadow-ink);
-}
-.brand h1 {
-  font-family: var(--font-pixel);
-  font-size: var(--step-1);
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-.brand-sub { font-size: var(--step--1); color: var(--text-soft); }
-.brand-mark { font-size: var(--step-2); }
+/* inline SVG icons */
+.sprite { display: block; }
 
-/* nav = pixel tabs */
-.nav-link {
-  font-family: var(--font-pixel);
-  font-size: var(--step--1);
-  border: 2px solid var(--wood-dark);
-  border-radius: 0;
-  background: var(--surface);
-  color: var(--text);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
-}
-.nav-link:hover { background: var(--surface-2); text-decoration: none; }
-.nav-link.active {
-  background: var(--accent);
-  color: var(--wood-deep);
-  border-color: var(--wood-deep);
-  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2), 2px 2px 0 var(--shadow-ink);
-}
+/* brand mark icon picks up the brand colour */
+.brand-mark { display: inline-flex; align-items: center; color: var(--primary); }
 
-/* track switch = a joined pair of pixel tabs */
+/* track switch = a tidy segmented control */
 .track-switch {
-  border: 2px solid var(--wood-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
   background: var(--surface);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
 }
-.seg {
-  font-family: var(--font-pixel);
-  font-size: calc(var(--step--1) * 0.92);
-  color: var(--text);
-  border-inline-end: 2px solid var(--wood-dark);
-}
-.seg:last-child {
-  border-inline-end: 0;
-}
-.seg:hover {
-  background: var(--surface-2);
-  text-decoration: none;
-}
-.seg.active {
-  background: var(--accent);
-  color: var(--wood-deep);
-  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2);
-}
+.seg { border-inline-end: 1px solid var(--border); }
+.seg:last-child { border-inline-end: 0; }
 
-/* app-bar icon buttons stay little wooden keys (inherit .btn-ghost) */
-.app-bar-actions .icon-btn { border-width: 2px; }
+/* native dialog centering (the global `* { margin: 0 }` reset removes the UA
+   `margin: auto` that centers a showModal() dialog) */
+.dialog { margin: auto; }
 
-/* --- stat "signpost" cards --- */
-.stats { gap: var(--space-4); }
-.stat {
-  background: var(--surface);
-  border: 3px solid var(--wood);
-  border-radius: 0;
-  box-shadow: 0 0 0 2px var(--wood-deep), 3px 3px 0 var(--shadow-ink);
-  padding: var(--space-3) var(--space-4);
-}
-.stat dt { color: var(--text-soft); font-weight: 700; }
-.stat dd { font-family: var(--font-pixel); font-size: var(--step-0); color: var(--text); }
-/* rotate through crop colours on the stat accents */
-.stat:nth-child(1) { border-color: var(--green); }
-.stat:nth-child(2) { border-color: var(--blue); }
-.stat:nth-child(3) { border-color: var(--red); }
-.stat:nth-child(4) { border-color: var(--purple); }
-.stat:nth-child(5) { border-color: var(--accent); }
+/* empty state art */
+.empty .empty-art { margin-block-end: var(--space-2); color: var(--primary); }
 
-/* --- toolbar search: a carved field --- */
-.search input {
-  border: 2px solid var(--wood-dark);
-  border-radius: 0;
-  background: var(--surface);
-  box-shadow: inset 2px 2px 0 oklch(0 0 0 / 0.08);
-}
-
-/* --- filter chips = pixel tabs --- */
-.chip {
-  font-family: var(--font-pixel);
-  font-size: calc(var(--step--1) * 0.92);
-  border: 2px solid var(--wood-dark);
-  border-radius: 0;
-  background: var(--surface);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
-  transition: transform var(--dur-1) var(--ease-smooth), background var(--dur-1) var(--ease-smooth);
-}
-.chip:hover { background: var(--surface-2); }
-.chip.on {
-  background: var(--accent);
-  color: var(--wood-deep);
-  border-color: var(--wood-deep);
-  box-shadow: inset 0 -2px 0 oklch(0 0 0 / 0.2), 2px 2px 0 var(--shadow-ink);
-}
-.chip-count { font-family: var(--font-pixel); }
-
-/* --- table = parchment ledger in a wooden frame --- */
-.table-wrap {
-  border: 3px solid var(--wood);
-  border-radius: 0;
-  background: var(--surface);
-  box-shadow: 0 0 0 2px var(--wood-deep), 5px 5px 0 var(--shadow-ink);
-}
-table.grid th,
-table.grid td { border-block-end: 2px solid var(--wood-dark); }
-table.grid thead th {
-  background: var(--wood);
-  color: var(--primary-text);
-  font-family: var(--font-pixel);
-  font-size: calc(var(--step--1) * 0.9);
-  border-block-end: 2px solid var(--wood-deep);
-}
-.th-sort button { color: var(--primary-text); }
-.sort-mark { color: var(--accent); }
-table.grid tbody tr:hover { background: var(--surface-2); }
-.cell-name { background: var(--surface); border-inline-end: 2px solid var(--wood-dark); }
-table.grid tbody tr:hover .cell-name { background: var(--surface-2); }
-.col-pick input, .check input, .checks input { accent-color: var(--green); }
-table.grid td.best,
-.compare-grid td.best {
-  color: var(--wood-deep);
-  background: var(--accent);
-  font-weight: 800;
-}
-table.grid tbody tr.row-selected,
-table.grid tbody tr.row-selected .cell-name {
-  background: color-mix(in oklch, var(--accent) 35%, var(--surface));
-}
-
-/* --- status badges = pixel tags --- */
-.badge {
-  font-family: var(--font-pixel);
-  font-size: calc(var(--step--1) * 0.82);
-  border: 2px solid var(--wood-deep);
-  border-radius: 0;
-  box-shadow: 1px 1px 0 var(--shadow-ink);
-}
-.badge[data-status="to-see"]   { background: var(--blue);    color: var(--wood-deep); }
-.badge[data-status="seen"]     { background: var(--surface-2); color: var(--text); }
-.badge[data-status="shortlist"]{ background: var(--accent);  color: var(--wood-deep); }
-.badge[data-status="offer"]    { background: var(--green);   color: var(--wood-deep); }
-.badge[data-status="rejected"] { background: var(--red);     color: oklch(0.98 0.02 90); }
-.badge[data-status="signed"]   { background: var(--green);   color: var(--wood-deep); }
-html.dark .badge { filter: none; }
-
-/* --- stars = gold --- */
-.star.on { color: var(--accent); }
-.star { color: var(--text-faint); }
-
-/* --- dialog = wooden menu box --- */
-.dialog {
-  /* restore native centering — the global `* { margin: 0 }` reset kills the
-     UA `margin: auto` that centers a showModal() dialog */
-  margin: auto;
-  border: 4px solid var(--wood);
-  border-radius: 0;
-  background: var(--surface);
-  box-shadow: 0 0 0 2px var(--wood-deep), inset 0 0 0 2px var(--wood-deep), 8px 8px 0 var(--shadow-ink);
-}
-.dialog::backdrop { background: var(--wood-deep); opacity: 0.55; backdrop-filter: blur(1px); }
-.dialog-head { background: var(--wood); color: var(--primary-text); border-block-end: 2px solid var(--wood-deep); }
-.dialog-head h2 { font-family: var(--font-pixel); font-size: var(--step-0); color: var(--primary-text); }
-/* close button: parchment key with a dark glyph — visible on the brown header */
-.dialog-head .icon-btn {
-  background: var(--surface);
-  color: var(--wood-deep);
-  border-color: var(--wood-deep);
-}
-.dialog-head .icon-btn:hover { background: var(--accent); }
-.dialog-foot { border-block-start: 2px solid var(--wood-dark); background: var(--surface-2); }
-.checks { border: 2px solid var(--wood-dark); border-radius: 0; }
-
-/* --- section titles + headings get the pixel face --- */
-.section-title,
-.compare-head h2 { font-family: var(--font-pixel); font-size: var(--step-0); }
-.fin-row.fin-emph dd { font-family: var(--font-pixel); color: var(--accent); }
-.fin-emph dt { color: var(--text); }
-
-/* --- finance grid in a wood frame --- */
-.finance-grid { border: 2px solid var(--wood-dark); border-radius: 0; }
-.fin-row { border-block-end: 2px solid var(--wood-dark); }
-.fin-row.fin-emph { background: var(--surface-2); }
-
-/* --- builder credit: a little wooden name-plate --- */
-.builder-credit {
-  border: 2px solid var(--wood-deep);
-  border-radius: 0;
-  background: var(--surface);
-  color: var(--text);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
-  backdrop-filter: none;
-}
-.builder-credit:hover,
-.builder-credit:focus-visible {
-  background: var(--accent);
-  color: var(--wood-deep);
-  border-color: var(--wood-deep);
-  box-shadow: 3px 3px 0 var(--shadow-ink);
-  outline: 2px solid var(--wood-deep);
-  outline-offset: 2px;
-  transform: translateY(-2px);
-}
-
-/* --- pixel sprite helper --- */
-.sprite { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
-@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-.bob { animation: bob 2.4s steps(6, end) infinite; }
-@media (prefers-reduced-motion: reduce) { .bob { animation: none; } }
-
-/* --- tutorial wizard: a centered onboarding modal overlay --- */
+/* --- onboarding wizard: a centered modal overlay --- */
 .dialog.tutorial {
   width: min(38rem, calc(100vw - 1.5rem));
   position: relative;
@@ -987,16 +790,14 @@ html.dark .badge { filter: none; }
   gap: var(--space-3);
   padding: var(--space-6) var(--space-5) var(--space-5);
 }
-.tut-art { padding-block-start: var(--space-2); }
+.tut-art { color: var(--primary); margin-block-end: var(--space-1); }
 .tut-step {
-  font-family: var(--font-pixel);
-  font-size: calc(var(--step--1) * 0.8);
+  font-size: var(--step--1);
   color: var(--text-soft);
   letter-spacing: 0.04em;
 }
 .tut-title {
-  font-family: var(--font-pixel);
-  font-size: var(--step-0);
+  font-size: var(--step-1);
   margin: 0;
   color: var(--text);
 }
@@ -1004,19 +805,16 @@ html.dark .badge { filter: none; }
   margin: 0;
   color: var(--text-soft);
   line-height: 1.7;
-  max-width: 36ch;
+  max-width: 40ch;
 }
-.tut-dots {
-  display: flex;
-  gap: var(--space-2);
-  margin-block: var(--space-1);
-}
+.tut-dots { display: flex; gap: var(--space-2); margin-block: var(--space-1); }
 .tut-dot {
-  width: 0.7rem; height: 0.7rem;
+  width: 0.5rem; height: 0.5rem;
+  border-radius: var(--radius-full);
   background: var(--surface-2);
-  border: 2px solid var(--wood-dark);
+  border: 1px solid var(--border);
 }
-.tut-dot.on { background: var(--accent); border-color: var(--wood-deep); }
+.tut-dot.on { background: var(--primary); border-color: var(--primary); }
 .tut-nav {
   display: flex;
   justify-content: space-between;
@@ -1032,36 +830,29 @@ html.dark .badge { filter: none; }
   inset-inline-end: var(--space-3);
   z-index: 1;
   background: var(--surface-2);
-  border: 2px solid var(--wood-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   color: var(--text-soft);
   font-size: var(--step--1);
   padding: 2px var(--space-3);
   cursor: pointer;
-  box-shadow: 1px 1px 0 var(--shadow-ink);
 }
-.tut-skip:hover { background: var(--accent); color: var(--wood-deep); }
+.tut-skip:hover { background: var(--surface); color: var(--text); }
 
-/* --- empty state with a sprite --- */
-.empty .empty-art { margin-block-end: var(--space-2); }
-.empty h2 { font-family: var(--font-pixel); font-size: var(--step-1); line-height: 1.5; }
-
-/* --- permanent dedication line (so it's always written, not just in the modal) --- */
+/* permanent tagline line */
 .dedication {
   margin-block: var(--space-2) var(--space-6);
   text-align: center;
   font-size: var(--step--1);
-  font-weight: 700;
-  color: var(--green);
+  color: var(--text-soft);
 }
 
 /* =====================================================================
- * MOBILE-FIRST refinements — this is a phone-during-viewings app, so the
- * Stardew chrome has to sit comfortably on a ~375px screen.
+ * MOBILE-FIRST refinements — this is a phone-during-viewings app.
  * ===================================================================== */
 @media (max-width: 640px) {
   .container { padding-inline: var(--space-3); }
 
-  /* app bar stacks: brand row, then nav, then actions */
   .app-bar-inner { gap: var(--space-2); padding-block: var(--space-2); }
   .brand h1 { font-size: var(--step-0); }
   .brand-sub { font-size: calc(var(--step--1) * 0.9); }
@@ -1070,229 +861,18 @@ html.dark .badge { filter: none; }
   .nav-link { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); }
   .seg { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); gap: var(--space-1); }
 
-  /* stats: full-width cards so the wide pixel numbers never overflow */
   .stats { grid-template-columns: 1fr; gap: var(--space-3); }
   .stat { padding: var(--space-2) var(--space-3); min-width: 0; }
-  .stat dd { font-size: calc(var(--step--1) * 0.95); overflow-wrap: anywhere; }
+  .stat dd { overflow-wrap: anywhere; }
 
-  /* tutorial modal: comfortable padding + readable body on phones */
   .tut { padding: var(--space-6) var(--space-4) var(--space-4); }
   .tut-body { font-size: var(--step--1); }
   .tut-nav .btn { min-width: 5rem; }
 
-  /* chunky, thumb-friendly tap targets */
   .chip { font-size: calc(var(--step--1) * 0.85); padding: var(--space-2) var(--space-3); }
   .icon-btn { min-width: 2.5rem; min-height: 2.5rem; }
   .empty h2 { font-size: var(--step-0); }
   .empty p { font-size: var(--step--1); }
 
-  /* dialogs go (near) full-screen on phones */
   .dialog { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
-}
-
-
-/* =====================================================================
- * 8-BIT SCENE — fixed Stardew-style backdrop (sky + clouds + field).
- * Lives behind everything; content panels are opaque and float over it.
- * ===================================================================== */
-.pixel-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-  /* stepped sky — hard colour bands read as 8-bit, not a smooth gradient */
-  background: linear-gradient(
-    180deg,
-    var(--sky-1) 0%,
-    var(--sky-1) 34%,
-    var(--sky-2) 34%,
-    var(--sky-2) 64%,
-    var(--sky-3) 64%,
-    var(--sky-3) 100%
-  );
-}
-
-/* the tiling grass + soil + crops field, anchored to the bottom */
-.pixel-ground {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  width: 100%;
-  height: 144px;
-  display: block;
-  image-rendering: pixelated;
-}
-
-/* drifting pixel clouds */
-.pixel-clouds {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-.cloud {
-  position: absolute;
-  image-rendering: pixelated;
-  opacity: 0.9;
-  will-change: transform;
-}
-.cloud-a {
-  top: 9%;
-  width: 96px;
-  animation: drift-a 70s linear infinite;
-}
-.cloud-b {
-  top: 20%;
-  width: 64px;
-  opacity: 0.75;
-  animation: drift-b 96s linear infinite;
-}
-.cloud-c {
-  top: 32%;
-  width: 120px;
-  opacity: 0.82;
-  animation: drift-c 120s linear infinite;
-}
-@keyframes drift-a {
-  from { transform: translateX(-140px); }
-  to   { transform: translateX(calc(100vw + 140px)); }
-}
-@keyframes drift-b {
-  from { transform: translateX(calc(100vw + 120px)); }
-  to   { transform: translateX(-120px); }
-}
-@keyframes drift-c {
-  from { transform: translateX(-180px); }
-  to   { transform: translateX(calc(100vw + 180px)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cloud { animation: none; }
-  .cloud-a { left: 6%; }
-  .cloud-b { left: 64%; }
-  .cloud-c { left: 30%; }
-}
-
-/* --- celestial: sun by day, moon by night --- */
-.scene-sun,
-.scene-moon {
-  position: absolute;
-  top: 6%;
-  inset-inline-end: 9%;
-  image-rendering: pixelated;
-}
-.scene-sun {
-  filter: drop-shadow(0 0 10px color-mix(in oklch, var(--sun) 70%, transparent));
-  animation: sun-pulse 6s ease-in-out infinite;
-}
-.scene-moon {
-  display: none;
-  filter: drop-shadow(0 0 10px color-mix(in oklch, var(--moon) 60%, transparent));
-  animation: moon-bob 9s ease-in-out infinite;
-}
-@keyframes sun-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-@keyframes moon-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
-
-/* --- stars + a stray shooting star (night) --- */
-.scene-stars {
-  position: absolute;
-  inset: 0;
-  display: none;
-}
-.twinkle {
-  position: absolute;
-  image-rendering: pixelated;
-  animation: twinkle 3.4s ease-in-out infinite;
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.35; transform: scale(0.85); }
-  50% { opacity: 1; transform: scale(1); }
-}
-.shooting-star {
-  position: absolute;
-  top: 9%;
-  inset-inline-end: 20%;
-  width: 64px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--star));
-  opacity: 0;
-  transform: rotate(35deg);
-  animation: shoot 13s ease-in infinite;
-}
-@keyframes shoot {
-  0%, 90% { opacity: 0; transform: translate(0, 0) rotate(35deg); }
-  91% { opacity: 0.9; }
-  100% { opacity: 0; transform: translate(-170px, 120px) rotate(35deg); }
-}
-
-/* --- birds crossing the sky (day) --- */
-.scene-birds {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-.bird-fly {
-  position: absolute;
-  left: 0;
-  image-rendering: pixelated;
-  opacity: 0.85;
-  animation-name: bird-fly;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform;
-}
-@keyframes bird-fly {
-  from { transform: translateX(-8vw) translateY(0); }
-  50%  { transform: translateX(50vw) translateY(-16px); }
-  to   { transform: translateX(108vw) translateY(0); }
-}
-
-/* --- trees + flowers standing on the grass, in front of the field --- */
-.scene-scape {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 104px;
-  height: 0;
-}
-.scape-item {
-  position: absolute;
-  bottom: 0;
-  image-rendering: pixelated;
-  transform-origin: bottom center;
-}
-.scape-flower { bottom: -10px; }
-.sway {
-  animation-name: sway;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-@keyframes sway {
-  0%, 100% { transform: rotate(-2.5deg); }
-  50% { transform: rotate(2.5deg); }
-}
-
-/* night swaps the sky: hide sun + birds, reveal moon + stars */
-html.dark .scene-sun,
-html.dark .scene-birds { display: none; }
-html.dark .scene-moon,
-html.dark .scene-stars { display: block; }
-
-@media (prefers-reduced-motion: reduce) {
-  .scene-sun,
-  .scene-moon,
-  .twinkle,
-  .shooting-star,
-  .sway { animation: none; }
-  .scene-birds { display: none; }
-}
-
-/* keep the two non-panel footer lines readable over the field */
-.privacy-note,
-.dedication {
-  width: fit-content;
-  max-width: min(100%, 60ch);
-  margin-inline: auto;
-  padding: var(--space-2) var(--space-4);
-  background: color-mix(in oklch, var(--surface) 86%, transparent);
-  border: 2px solid var(--wood-dark);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
 }

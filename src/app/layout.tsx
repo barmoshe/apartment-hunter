@@ -7,12 +7,9 @@ import "./globals.css";
 import { DiraProvider } from "@/store/store";
 import { AppBar } from "@/components/AppBar";
 import { BuilderCredit } from "@/components/BuilderCredit";
-import { PixelBackground } from "@/components/PixelBackground";
 import { TutorialWizard } from "@/components/TutorialWizard";
 
-// Friendly rounded body (Rubik) — also the fallback that renders all Hebrew.
-// The pixel face (Public Pixel) is declared in tokens.css with a unicode-range
-// limited to Latin/digits/₪ so Hebrew never uses its rough 8x8 glyphs.
+// Rubik — the single UI typeface, for both Hebrew and Latin.
 const rubik = Rubik({
   subsets: ["hebrew", "latin"],
   variable: "--font-app",
@@ -67,7 +64,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: prePaint }} />
       </head>
       <body>
-        <PixelBackground />
         <a className="skip-link" href="#main">
           דילוג לתוכן
         </a>

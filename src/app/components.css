@@ -1,65 +1,54 @@
-/* components.css — Stardew pixel primitives (button, field, card/panel, callout).
+/* components.css — clean house primitives (button, field, card, callout).
  * Import AFTER tokens.css + base.css, BEFORE globals.css. Same class names as the
- * house kit so existing markup restyles for free; values are now wooden + pixel.
- */
+ * house kit so existing markup restyles for free. */
 
-/* --- Button: a chunky wooden key with a real "pressed" state --- */
+/* --- Button --- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-5);
   background: var(--primary); color: var(--primary-text);
-  border: 2px solid var(--wood-deep); border-radius: 0;
-  font-weight: 700; line-height: 1.15; cursor: pointer;
-  box-shadow:
-    inset 0 2px 0 oklch(1 0 0 / 0.18),
-    inset 0 -3px 0 oklch(0 0 0 / 0.22),
-    3px 3px 0 var(--shadow-ink);
-  transition: transform var(--dur-1) var(--ease-smooth),
-    background var(--dur-1) var(--ease-smooth), box-shadow var(--dur-1) var(--ease-smooth);
+  border: 1px solid transparent; border-radius: var(--radius);
+  font-weight: 600; line-height: 1.15; cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: background var(--dur-1) var(--ease), transform var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
 }
 .btn:hover { background: var(--primary-hover); }
-.btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: inset 0 2px 0 oklch(1 0 0 / 0.14), 1px 1px 0 var(--shadow-ink);
-}
+.btn:active { transform: translateY(1px); }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
 .btn-ghost {
-  background: var(--surface); color: var(--text); border-color: var(--wood-dark);
-  box-shadow: inset 0 2px 0 oklch(1 0 0 / 0.30), 3px 3px 0 var(--shadow-ink);
+  background: var(--surface); color: var(--text); border-color: var(--border);
+  box-shadow: none;
 }
 .btn-ghost:hover { background: var(--surface-2); color: var(--text); }
-html.dark .btn-ghost { box-shadow: inset 0 2px 0 oklch(1 0 0 / 0.08), 3px 3px 0 var(--shadow-ink); }
 
-/* --- Form field: carved parchment with a wooden frame --- */
+/* --- Form field --- */
 .field { display: flex; flex-direction: column; gap: var(--space-2); }
-.field > label { font-weight: 700; font-size: var(--step--1); color: var(--text); }
+.field > label { font-weight: 600; font-size: var(--step--1); color: var(--text); }
 .field :is(input, textarea, select) {
   padding: var(--space-3) var(--space-4);
   background: var(--surface); color: var(--text);
-  border: 2px solid var(--wood-dark); border-radius: 0;
-  box-shadow: inset 2px 2px 0 oklch(0 0 0 / 0.08);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
 }
+.field :is(input, textarea, select):hover { border-color: var(--text-faint); }
 .field :is(input, textarea, select)[aria-invalid="true"] { border-color: var(--danger); }
 .field .error { color: var(--danger); font-size: var(--step--1); min-height: 1.2em; }
 
-/* --- Card = wooden menu panel (triple-line Stardew frame + hard drop) --- */
+/* --- Card --- */
 .card {
   background: var(--surface);
-  border: 3px solid var(--wood); border-radius: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow:
-    0 0 0 2px var(--wood-deep),
-    inset 0 0 0 2px var(--wood-deep),
-    5px 5px 0 var(--shadow-ink);
+  box-shadow: var(--shadow-1);
 }
 
 /* --- Inline status callout --- */
 .callout {
   padding: var(--space-4); background: var(--surface-2);
-  border: 2px solid var(--wood-dark); border-radius: 0;
-  border-inline-start: 6px solid var(--primary);
-  box-shadow: 3px 3px 0 var(--shadow-ink);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  border-inline-start: 4px solid var(--primary);
 }
 .callout-ok { border-inline-start-color: var(--ok); }
 .callout-warn { border-inline-start-color: var(--warn); }
