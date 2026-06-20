@@ -158,19 +158,19 @@ export default function Home() {
       ) : null}
 
       {!hydrated ? (
-        <p className="muted pad">מגדלים את הנתונים…</p>
+        <p className="muted pad">טוען נתונים…</p>
       ) : items.length === 0 ? (
         <div className="empty card">
           <div className="empty-art" aria-hidden="true">
             <HouseSprite cell={9} />
           </div>
-          <h2>החלקה עדיין ריקה</h2>
+          <h2>הרשימה עדיין ריקה</h2>
           <p className="muted">
-            בואו נשתול את הדירה הראשונה שראיתם. כל המידע נשמר מקומית
-            במכשיר שלכם בלבד, שום דבר לא עוזב את העמק.
+            הוסיפו את הדירה הראשונה שראיתם. כל המידע נשמר מקומית
+            במכשיר שלכם בלבד, שום דבר לא יוצא ממנו.
           </p>
           <button type="button" className="btn" onClick={openAdd}>
-            שתילת הדירה הראשונה
+            הוספת הדירה הראשונה
           </button>
         </div>
       ) : visible.length === 0 ? (

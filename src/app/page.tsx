@@ -15,7 +15,7 @@ export default function RootRedirect() {
 
   return (
     <main id="main" tabIndex={-1} className="container">
-      <p className="muted pad">פותחים את העמק…</p>
+      <p className="muted pad">טוען…</p>
     </main>
   );
 }

@@ -50,7 +50,7 @@ export default function MortgagePage() {
       </section>
 
       {!mortgages.hydrated ? (
-        <p className="muted pad">מגדלים את הנתונים…</p>
+        <p className="muted pad">טוען נתונים…</p>
       ) : mortgages.items.length === 0 ? (
         <div className="empty card">
           <div className="empty-art" aria-hidden="true">

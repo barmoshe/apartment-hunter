@@ -158,7 +158,7 @@ export default function RentPage() {
       ) : null}
 
       {!hydrated ? (
-        <p className="muted pad">מגדלים את הנתונים…</p>
+        <p className="muted pad">טוען נתונים…</p>
       ) : items.length === 0 ? (
         <div className="empty card">
           <div className="empty-art" aria-hidden="true">
